@@ -11,9 +11,11 @@ import { Link } from "react-router-dom";
 import { viderPanier } from "../redux/FontionAPI"
 import mobile from '../responsive';
 import { supprimerProduitPanier } from '../redux/panierRedux';
+import { useHistory } from "react-router";
+import { userRequest } from "../requestMethods";
 
 
-const CONST_KEY = process.env.KEY_PUBLIC;
+const CONST_KEY = "pk_test_51KZfooCdM8sTJrsGumDQtdXReAppgLeZ8OVRUhl8BNpgDS49NghPxvgD1fxpipYV4TFWcujnNFVak4OYv0GGWtp500BTJBvLsJ";
 
 const Container = styled.div`
 
@@ -172,25 +174,18 @@ const Button = styled.button`
 `;
 
 
+
 export default function Panier() {
   const panier = useSelector((state) => state.panier);
   const [stripeToken, setStripeToken] = useState(null);
- /*
-  const setQuantite = (quantite) => {
-  quantite=quantite - 1;  } 
+  const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
+  const history = useHistory();
 
-  const MODQuantite = (type, quantite) => {
-    if (type === "remove") {quantite > 1; quantite = quantite - 1;} 
-    else {quantite += 1; }
-
-  };
-  onClick={() => {produit.quantite=produit.quantite+1}}
-  */
   const Token = (token) => {
     setStripeToken(token);
   };
+
 const d = useDispatch();
-const F = useDispatch();
   const Click = (e) => {
     e.preventDefault();
     viderPanier(d);
@@ -201,6 +196,35 @@ const F = useDispatch();
     d(supprimerProduitPanier({produit}))
   }
 
+
+  const prods = panier.produits.map((product) => ({
+    productId: product._id,
+    quantity: product.quantity,
+  }));
+
+  useEffect(() => {
+    const makeRequest = async () => {
+      const order = {
+        userId: utilisateur._id,
+        products: [...prods],
+        amount: panier.total,
+        address: `${stripeToken.card.address_city} ${stripeToken.card.address_line1}`,
+      };
+      try {
+        await userRequest.post("/orders", order);
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: 500,
+        });
+
+        history.push("/success", {
+          stripeData: res.data,
+          products: panier,
+        });
+      } catch {}
+    };
+    stripeToken && makeRequest();
+  }, [stripeToken, panier.total, history]);
 
   return (
     <Container>

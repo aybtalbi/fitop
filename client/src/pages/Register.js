@@ -129,7 +129,6 @@ export default function Register() {
     }
 
     if (typeof input["password"] !== "undefined" && typeof input["confirm_password"] !== "undefined") {
-        
       if (input["password"] != input["confirm_password"]) {
         isValid = false;
         errors["password"] = true;

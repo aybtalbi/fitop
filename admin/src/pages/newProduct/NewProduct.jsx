@@ -16,6 +16,9 @@ export default function NewProduct() {
   const [inputs, setInputs] = useState({});
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
+  const [color, setColor] = useState([]);
+  const [type, setType] = useState([]);
+  const [size, setSize] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
   let history = useHistory();
@@ -26,9 +29,28 @@ export default function NewProduct() {
       return { ...prev, [e.target.name]: e.target.value };
     });
   };
+
+  console.log(inputs)
+  console.log(color)
+  console.log(size)
+
   const handleCat = (e) => {
     setCat(e.target.value.split(","));
   };
+
+  const handleColor = (e) => {
+    setColor(e.target.value.split(","));
+  };
+
+  const handleSize = (e) => {
+    setSize(e.target.value.split(","));
+  };
+
+  const handleType = (e) => {
+    setType(e.target.value.split(","));
+  };
+
+
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -67,7 +89,7 @@ export default function NewProduct() {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat };
+          const product = { ...inputs, img: downloadURL, categories: cat,color : color, size:size,type:type };
           addProduct(product, dispatch);
           history.push("/products")
         });
@@ -107,6 +129,15 @@ export default function NewProduct() {
           />
         </div>
         <div className="addProductItem">
+          <label>Brand</label>
+          <input
+            name="brand"
+            type="text"
+            placeholder="description..."
+            onChange={handleChange}
+          />
+        </div>
+        <div className="addProductItem">
           <label>Price</label>
           <input
             name="price"
@@ -117,7 +148,19 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
+          <input type="text" placeholder="homme,femme.." onChange={handleCat} />
+        </div>
+        <div className="addProductItem">
+          <label>Color</label>
+          <input type="text" placeholder="Red , ..." onChange={handleColor} />
+        </div>
+        <div className="addProductItem">
+          <label>Size</label>
+          <input type="text" placeholder="XXL, XL" onChange={handleSize} />
+        </div>
+        <div className="addProductItem">
+          <label>Type</label>
+          <input type="text" placeholder="jeans,skirts" onChange={handleType} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>

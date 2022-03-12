@@ -10,8 +10,10 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { email: email, password });
+    login(dispatch, { username, password });
+
   };
-  
+
   return (
     <div
       style={{

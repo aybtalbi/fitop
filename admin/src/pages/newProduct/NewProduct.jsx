@@ -17,6 +17,7 @@ export default function NewProduct() {
   const [file, setFile] = useState(null);
   const [cat, setCat] = useState([]);
   const [color, setColor] = useState([]);
+  const [type, setType] = useState([]);
   const [size, setSize] = useState([]);
   const [isLoading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -44,6 +45,11 @@ export default function NewProduct() {
   const handleSize = (e) => {
     setSize(e.target.value.split(","));
   };
+
+  const handleType = (e) => {
+    setType(e.target.value.split(","));
+  };
+
 
 
   const handleClick = (e) => {
@@ -83,7 +89,7 @@ export default function NewProduct() {
         // Handle successful uploads on complete
         // For instance, get the download URL: https://firebasestorage.googleapis.com/...
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          const product = { ...inputs, img: downloadURL, categories: cat,color : color, size:size };
+          const product = { ...inputs, img: downloadURL, categories: cat,color : color, size:size,type:type };
           addProduct(product, dispatch);
           history.push("/products")
         });
@@ -142,7 +148,7 @@ export default function NewProduct() {
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleCat} />
+          <input type="text" placeholder="homme,femme.." onChange={handleCat} />
         </div>
         <div className="addProductItem">
           <label>Color</label>
@@ -151,6 +157,10 @@ export default function NewProduct() {
         <div className="addProductItem">
           <label>Size</label>
           <input type="text" placeholder="XXL, XL" onChange={handleSize} />
+        </div>
+        <div className="addProductItem">
+          <label>Type</label>
+          <input type="text" placeholder="jeans,skirts" onChange={handleType} />
         </div>
         <div className="addProductItem">
           <label>Stock</label>

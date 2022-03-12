@@ -21,7 +21,7 @@ justify-content: center;
 `
 const Wrapper = styled.div`
   width: 40%;
-  height: 53%;
+  height: 55%;
   padding: 45px;
   background-color: white;
   border-radius: 10px;

@@ -151,8 +151,8 @@ export default function Register() {
           <Input placeholder="lastname" name="lastname" border={errors?.lastname ? "ok" : "" } onChange={handleChange}/>
           <Input placeholder="username" name="username" border={errors?.username ? "ok" : "" } onChange={handleChange}/>
           <Input placeholder="email" name="email" border={errors?.email ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="password" name="password" border={errors?.password ? "ok" : "" } onChange={handleChange}/>
-          <Input placeholder="confirm password" name="confirm_password" border={errors?.confirm_password ? "ok" : "" } onChange={handleChange} />
+          <Input placeholder="password" name="password" type="password" border={errors?.password ? "ok" : ""  } onChange={handleChange}/>
+          <Input placeholder="confirm password" name="confirm_password" type="password" border={errors?.confirm_password ? "ok" : "" } onChange={handleChange} />
           <Agreement>
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>

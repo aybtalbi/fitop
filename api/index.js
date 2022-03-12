@@ -9,7 +9,7 @@ const productRoute = require("./routes/product");
 const panierRoute = require("./routes/panier");
 const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe");
-const newsLetter = require("./routes/newsLetter");
+//const newsLetter = require("./routes/newsLetter");
 const cors = require("cors");
 
 
@@ -28,7 +28,7 @@ app.use("/api/products", productRoute);
 app.use("/api/panier", panierRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
-app.use("/api/newsletter", newsLetter);
+//app.use("/api/newsletter", newsLetter);
 
 app.listen(process.env.PORT || 8080, () => {
   console.log("Backend server is running!");

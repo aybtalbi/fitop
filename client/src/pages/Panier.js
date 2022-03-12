@@ -86,7 +86,8 @@ const Details = styled.div`
   justify-content: space-around;
 `;
 
-const ProductName = styled.span``;
+const ProductName = styled.span`
+`;
 
 const ProductId = styled.span``;
 
@@ -94,6 +95,7 @@ const ProductColor = styled.div`
   width: 20px;
   height: 20px;
   border-radius: 50%;
+  border: 1px solid gray;
   background-color: ${(props) => props.color};
 `;
 
@@ -102,9 +104,9 @@ const ProductSize = styled.span``;
 const PriceDetail = styled.div`
   flex: 2;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;  
+  justify-content: center;  
   margin-left: 110 px;
 `;
 
@@ -221,9 +223,6 @@ const F = useDispatch();
                   <ProductName>
                     <b>Product:</b> {produit.title}
                   </ProductName>
-                  <ProductId>
-                    <b>ID:</b> {produit._id}
-                  </ProductId>
                   <ProductColor color={produit.color} />
                   <ProductSize>
                     <b>Size:</b> {produit.size}
@@ -231,9 +230,12 @@ const F = useDispatch();
                 </Details>
               </ProductDetail>
               <PriceDetail>
-                <Close onClick={()=>fermer(produit)}/>
+                <ProductAmountContainer>
+                <ProductAmount>{produit.quantite} </ProductAmount>                
+                </ProductAmountContainer>
                 <ProductPrice>{produit.price}.00 €</ProductPrice>
-              </PriceDetail>              
+              </PriceDetail>               
+              <Close onClick={()=>fermer(produit)}  style={{cursor: "pointer" , marginRight:"10px"}}/>             
             </Product> ))}
           </Info>
                     

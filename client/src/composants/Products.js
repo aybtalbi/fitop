@@ -15,7 +15,7 @@ justify-content: space-between;
 export default function Products({ categorie, filtre, sort }) {
     const [produits, setProduits] = useState([]);
     const [produitsFiltrer, setproduitsFiltrer] = useState([]);
-   console.log({ categorie, filtre, sort });
+
 
     useEffect(() => {
       const getProduits = async () => {

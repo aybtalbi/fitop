@@ -1,7 +1,8 @@
-import { connexionCommence, connexionReussi, connexionEchoue ,deconnexion} from "./utilisateurRedux"
+import { connexionCommence, connexionReussi, connexionEchoue ,deconnexion, registerStart, registerSuccess, registerFailure} from "./utilisateurRedux"
 import { supprimerPanier } from "./panierRedux"
 import { suppFavori } from "./FavoriteRedux"
 import axios from "axios" 
+import { publicRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(connexionCommence());
@@ -22,3 +23,13 @@ export const logout = async (dispatch) => {
 export const viderPanier = async (dispatch) => {
     dispatch(supprimerPanier());
  };
+
+ export const inscrire = async (dispatch, user) => {
+  dispatch(registerStart());
+  try {
+    const res = await publicRequest.post("/auth/inscrire", user);
+    dispatch(registerSuccess(res.data));
+  } catch (err) {
+    dispatch(registerFailure());
+  }
+};

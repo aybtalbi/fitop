@@ -57,7 +57,14 @@ const Select = styled.select`
 `
 const Option = styled.option`
 `
-
+const Input= styled.button`
+ color: black;
+ font-weight: 700;
+ border: none;
+ font-size: 20px;
+ background-color: white;
+ cursor: pointer;
+`
 
 export default function ListeProduits() {
   const Lieu = useLocation();
@@ -87,9 +94,11 @@ export default function ListeProduits() {
                   <Option value="pink">Rose</Option>
                   <Option value="skyblue">Bleu Ciel</Option>
                   <Option value="gray">Gris</Option>
+                  <Option value="broown">Marron</Option>
                 </Select>
                <Select name="size" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Taille</Option>
+                  <Option>XXS</Option>
                   <Option>XS</Option>
                   <Option>S</Option>
                   <Option>M</Option>
@@ -117,20 +126,18 @@ export default function ListeProduits() {
                   <Option>T-Shirt</Option>
                   <Option>Tracksuit</Option>
                   <Option>Baskets</Option>
-                  <Option>Calvin Klein</Option>
-                  <Option>Puma</Option>
-                  <Option>Vans</Option>
-                  <Option>Levi's</Option>
-                  <Option>EA7</Option> 
+                  <Option>Sweatshirt</Option>
                 </Select>
+                <Input onClick={(e) => setFiltres({})}> X </Input>
             </Filtre>
+            
             <Filtre>
               <Select onChange={(e) => setSort(e.target.value)}> 
                   <Option value="plusrecent">les plus récents</Option>
                   <Option value="Pris bas à élevé">Pris bas à élevé</Option>
                   <Option value="Pris élevé à bas">Pris élevé à bas</Option>
                </Select>
-            </Filtre>
+           </Filtre>            
         </FiltreContainer>
         <Products categorie={categorie} filtre={filtre} sort={sort}/>
         <Nouveautes/>

@@ -98,12 +98,7 @@ function Slider() {
         <Wrapper slideIndex={slideIndex}>
           {sliderItems.map((items) => (
             <Slide key={items.id}>
-                <ImageContainer> <Image  src={items.img} /> </ImageContainer>
-                <InfoContainer>
-                    <Title>{items.title}</Title>
-                    <Desc>{items.desc}</Desc>
-                    <Button>{items.button}</Button>
-                </InfoContainer>
+                <ImageContainer> <Image  src={items.img} /> </ImageContainer>                
             </Slide> 
            ))}         
         </Wrapper>

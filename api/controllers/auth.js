@@ -13,10 +13,7 @@ exports.inscrire = (req, res) => {
       process.env.PASS_SEC
     ).toString(),
   });
-
-  newUser
-    .save()
-    .then((savedUser) => {
+  newUser.save().then((savedUser) => {
       res.status(201).json(savedUser);
     })
     .catch((err) => res.status(500).json(err));
@@ -24,7 +21,7 @@ exports.inscrire = (req, res) => {
 
 exports.connexion = (req, res) => {
   User.findOne({ email: req.body.email })
-    .then((user) => {
+    .then ((user) => {
       if (!user) {
         res.status(401).json("Wrong credentials!");
       } else {

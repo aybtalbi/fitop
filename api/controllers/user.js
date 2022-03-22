@@ -2,9 +2,7 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 
 exports.updateUser = (req, res) => {
-    if (req.body.password) {
-        req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString();
-    }
+    if (req.body.password) {req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString();}
 
     User.findByIdAndUpdate(req.params.id, {$set: req.body,}, {new: true}
     ).then(

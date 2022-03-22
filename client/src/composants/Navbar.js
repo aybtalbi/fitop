@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Search , ShoppingCartOutlined } from "@material-ui/icons"
 import { Badge } from '@material-ui/core'
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { login,logout } from "../redux/FontionAPI"
 import mobile from '../responsive'
+import { useHistory } from "react-router-dom";
 
 const Container =styled.div`
     height: 60px;
@@ -46,21 +47,24 @@ const Right = styled.div`
 `
 
 const SearchContainer =styled.div`
-    border: 1px solid #E0E0E0;
+    border: 2px solid #E0E0E0;
     display: flex;
     align-items: center;
     margin-left: 20px;
-    padding: 5px;
     border-radius: 10px;
     width: 600px;
     flex:8;
+    cursor: pointer;
+
     ${mobile({ marginLeft: "50px", width: "60px", border: "0.5px solid #E0E0E0"})}
 `
 const Input = styled.input`
     border: none;
     border: none;
     outline: none;
-    width: 100%;  
+    width: 100%;
+    padding :8px;  
+    margin-left: 5px;
     ${mobile({ width: "40px" })}
 `
 const Logo = styled.h1`
@@ -78,15 +82,26 @@ const A = styled.div`
  display: flex
  `
 
-function Navbar() {
+function Navbar({search}) {
   const wishlistQ= useSelector (state => state.wishlist.quantite);
-  console.log(wishlistQ);
   const panierQ= useSelector (state => state.panier.quantite);
-  console.log(panierQ);  
   const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
   const d = useDispatch();
 
-  const Click = (e) => {
+  const [searchState , setSearchState] = useState();
+  const history = useHistory();
+
+  const handelChangeRecherche = (e) => {
+    const keySearch = e.target.value;
+    setSearchState(keySearch);
+  };
+
+  const clickSearch = (e) => {
+    e.preventDefault();
+    history.push(`/produits/search/${searchState}`);
+  }; 
+
+  const clickDeconnecter = (e) => {
     e.preventDefault();
     logout(d);
   }; 
@@ -99,20 +114,20 @@ function Navbar() {
         </Left>
         <Center>
           <SearchContainer>
-            <Input placeholder="Recherche"/>
-            <Search style={{color:"gray",fontSize:16, marginLeft:"400px"}} />
+            <Input placeholder="Recherche" onChange={search ? search : handelChangeRecherche}/>
+            <Search onClick={clickSearch} style={{color:"gray",fontSize:20,marginRight:10 }} />
           </SearchContainer>
         </Center>
         <Right>
         
         {utilisateur ?
-          <MenuItem style={{color: "black"}}  onClick={Click} ><b>Se déconnecter</b></MenuItem>
+          <MenuItem style={{color: "black"}}  onClick={clickDeconnecter} ><b>Se déconnecter</b></MenuItem>
         :
           <A>
           <Link to="/register" style={{color: "black", textDecoration:"none"}}>
           <MenuItem><b>S'inscrire</b></MenuItem>
           </Link>  
-          <Link to="/login" style={{color: "black", textDecoration:"none"}}>
+          <Link to="/login" style={{color: "black", textDecoration:"none",}}>
           <MenuItem><b>Se connecter</b></MenuItem>
           </Link>    
          

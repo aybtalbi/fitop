@@ -2,7 +2,7 @@ import { connexionCommence, connexionReussi, connexionEchoue ,deconnexion, regis
 import { supprimerPanier } from "./panierRedux"
 import { suppFavori } from "./FavoriteRedux"
 import axios from "axios" 
-import { publicRequest } from "../requestMethods";
+import { publicRequest, userRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(connexionCommence());
@@ -14,6 +14,7 @@ export const login = async (dispatch, user) => {
   }
 };
 
+
 export const logout = async (dispatch) => {
     dispatch(supprimerPanier());
     dispatch(suppFavori());
@@ -23,6 +24,12 @@ export const logout = async (dispatch) => {
 export const viderPanier = async (dispatch) => {
     dispatch(supprimerPanier());
  };
+
+ export const sendMail = async (mail) => {
+  try {
+    await publicRequest.post("/newsletter/signup", mail);
+  } catch (err) {}
+};
 
  export const inscrire = async (dispatch, user) => {
   dispatch(registerStart());

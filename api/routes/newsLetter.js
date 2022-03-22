@@ -2,44 +2,15 @@ const router = require("express").Router();
 const fetch = require("node-fetch");
 const client = require("@mailchimp/mailchimp_marketing");
 const nodemailer = require("nodemailer");
+const { addMail, getAllMail } = require("../controllers/newsletter");
 
-router.post("/signup", (req, res) => {
-  const email = req.body.email;
+router.post("/signup", addMail);
 
-  const data = {
-    members: [
-      {
-        email_address: email,
-        status: "pending",
-      },
-    ],
-  };
+router.post("/send",getAllMail ,(req, res) => {
 
-  const postData = JSON.stringify(data);
-
-  fetch("https://us14.api.mailchimp.com/3.0/lists/df6941112c", {
-    method: "POST",
-    headers: {
-      Authorization: "auth 73bd2ef341e02c224236df57e959926f-us14",
-    },
-    body: postData,
-  })
-    .then(res.status(200).json("ok"))
-    .catch((err) => res.status(500).json(err));
-});
-
-router.get("/list", (req, res) => {
-  client.setConfig({
-    apiKey: "73bd2ef341e02c224236df57e959926f-us14",
-    server: "us14",
-  });
-
+  members = req.mails.map(mail => mail.email).join(',');
+  console.log(req.body);
   const run = async () => {
-    const response = await client.lists.getListMembersInfo("df6941112c");
-    const members = response.members
-      .map((member) => member.email_address)
-      .join(",");
-
       // create reusable transporter object using the default SMTP transport
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -49,23 +20,17 @@ router.get("/list", (req, res) => {
         },
       });
 
-    const info = await transporter.sendMail({
+     await transporter.sendMail({
         from: "ecomm.fitop@gmail.com", // sender address
         bcc : members, // list of receivers
-        subject: "test ", // Subject line
-        text: "bonjour\n\n"
-                + " test testtesttesttesttesttesttesttesttesttest \ntest testtesttesttesttesttesttesttesttesttest \ntest testtesttesttesttesttesttesttesttesttest \ntest testtesttesttesttesttesttesttesttesttest \n" + 
-                "cordialement " 
+        subject: req.body.object, // Subject line
+        text: req.body.text
       });
-
-      console.log("Message sent: %s", info.messageId);
-      // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-    
-      // Preview only available when sending through an Ethereal account
-      console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   };
 
-  run().catch(console.error);
+    run()
+    .then(resp => res.status(200).json(resp))
+    .catch(err => res.status(500).json(err));
 });
 
 module.exports = router;

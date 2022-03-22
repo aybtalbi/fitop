@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Produit from './pages/Produit';
 import Register from './pages/Register';
 import { useSelector } from "react-redux";
+import ListeSearchProduits from './pages/ListeSearchProduits';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/"  component={Home}/>
+        <Route exact path="/produits/search/:keysearch" component={ListeSearchProduits}/>
         <Route exact path="/produits/:categorie" component={ListeProduits}/>
         <Route exact path="/produits" component={ListeProduits}/>
         <Route exact path="/produit/:id" component={Produit}/>

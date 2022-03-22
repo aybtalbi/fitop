@@ -141,7 +141,7 @@ function Navbar({search}) {
                         </Link>
                         <Link to="/favories">
                             <Badge badgeContent={wishlistQ} color="primary">
-                                <FavoriteBorderOutlined style={{marginLeft: "20px"}}/>
+                                <FavoriteBorderOutlined style={{marginLeft: "20px",color: "black"}}/>
                             </Badge>
                         </Link>
                     </MenuItem>

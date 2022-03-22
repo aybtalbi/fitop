@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const fetch = require("node-fetch");
 const client = require("@mailchimp/mailchimp_marketing");
 const nodemailer = require("nodemailer");
 const { addMail, getAllMail } = require("../controllers/newsletter");

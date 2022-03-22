@@ -1,6 +1,7 @@
 import { Send } from '@material-ui/icons'
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { sendMail } from '../redux/FontionAPI';
 import mobile from '../responsive';
 
 const Container = styled.div`
@@ -43,15 +44,27 @@ const Button = styled.button`
    cursor: pointer ;
 `
 
-
 export default function Nouveautes() {
+   const [inputs, setInputs] = useState();
+  
+   const handleChange = (e) => {
+     setInputs((prev) => {
+       return { ...prev, [e.target.name]: e.target.value };
+     });}
+
+     const handleClick =  (e)  => {
+      e.preventDefault();
+      sendMail(inputs);
+    };
+   
+  
   return (
     <Container>
         <Title>Sois Le Premier À Savoir</Title>
         <Description> Inscris toi à notre newsletter pour recevoir des sorties exclusives et des remises Fitop. </Description>
         <InputContainer>
-           <Input placeholder='Ton email '/>
-           <Button>
+           <Input placeholder='Ton email ' name='email' onChange={handleChange}/>
+           <Button onClick={handleClick}>
                <Send/>
            </Button>
         </InputContainer>

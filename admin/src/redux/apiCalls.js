@@ -1,5 +1,5 @@
 import { loginFailure, loginStart, loginSuccess,logout } from "./userRedux";
-import { publicRequest, userRequest } from "../requestMethods";
+import {  publicRequest, userRequest } from "../requestMethods";
 import {
   getProductFailure,
   getProductStart,
@@ -25,7 +25,6 @@ import {
   updateUsersStart,
   updateUsersSuccess
 } from "./usersRedux";
-import {Redirect, useHistory} from "react-router-dom";
 import { deleteordersFailure, deleteordersStart, deleteordersSuccess, getordersFailure, getordersStart, getordersSuccess, updateordersFailure, updateordersStart, updateordersSuccess } from "./ordersRedux";
 
 export const login = async (dispatch, user) => {
@@ -33,6 +32,7 @@ export const login = async (dispatch, user) => {
   try {
     const res = await publicRequest.post("/auth/login", user);
     dispatch(loginSuccess(res.data));
+    window.location.replace("/");
   } catch (err) {
     dispatch(loginFailure());
   }
@@ -40,6 +40,12 @@ export const login = async (dispatch, user) => {
 
 export const deconnecter = async (dispatch) => {
   dispatch(logout());
+};
+
+export const sendMail = async (mail) => {
+  try {
+    await userRequest.post("/newsletter/send", mail);
+  } catch (err) {}
 };
 
 export const getProducts = async (dispatch) => {

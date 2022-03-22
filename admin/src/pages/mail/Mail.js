@@ -11,7 +11,7 @@ import {
   import { useLocation } from "react-router-dom";
   import { useState } from "react";
   import { useDispatch, useSelector } from "react-redux";
-  import { updateUsers } from "../../redux/apiCalls";
+  import { sendMail, updateUsers } from "../../redux/apiCalls";
   import Spinner from "../../components/Spinner/Spinner";
   
   export default function Mail() {
@@ -21,12 +21,11 @@ import {
       setInputs((prev) => {
         return { ...prev, [e.target.name]: e.target.value };
       });
-
-      console.log(inputs)
     };
   
     const handleClick =  (e)  => {
       e.preventDefault();
+      sendMail(inputs);
     };
   
     return (
@@ -44,16 +43,16 @@ import {
                   <input
                     type="text"
                     placeholder=""
-                    name="subject"
+                    name="object"
                     onChange={handleChange}
                   />
                 </div>
                 <div className="userUpdateItem">
-                  <label>Email</label>
+                  <label>Mail</label>
                   <textarea
                     type="text"
                     placeholder=""
-                    name="email"
+                    name="text"
                     onChange={handleChange}
                   />
                 </div>

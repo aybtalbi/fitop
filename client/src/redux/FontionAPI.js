@@ -4,6 +4,7 @@ import { suppFavori } from "./FavoriteRedux"
 import axios from "axios" 
 import { publicRequest,userRequest } from "../requestMethods";
 
+
 export const login = async (dispatch, user) => {
   dispatch(connexionCommence());
   try {
@@ -13,6 +14,7 @@ export const login = async (dispatch, user) => {
     dispatch(connexionEchoue());
   }
 };
+
 
 export const logout = async (dispatch) => {
     dispatch(supprimerPanier());
@@ -24,7 +26,14 @@ export const viderPanier = async (dispatch) => {
     dispatch(supprimerPanier());
  };
 
-export const inscrire = async (dispatch, user) => {
+
+ export const sendMail = async (mail) => {
+  try {
+    await publicRequest.post("/newsletter/signup", mail);
+  } catch (err) {}
+};
+
+ export const inscrire = async (dispatch, user) => {
   dispatch(registerStart());
   try {  
     const res = await publicRequest.post("/auth/inscrire", user);

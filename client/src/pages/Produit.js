@@ -190,7 +190,7 @@ export default function Produit() {
        }
   } else {    
     history.push(url);
-  };
+  }
 }
   return (
     <Container>

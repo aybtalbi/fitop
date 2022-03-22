@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect} from "react-router-do
 import Home from './pages/Home';
 import ListeProduits from './pages/ListeProduits';
 import Panier from './pages/Panier';
+import Favories from './pages/Favories';
 import Login from './pages/Login';
 import Produit from './pages/Produit';
 import Register from './pages/Register';
@@ -21,6 +22,7 @@ function App() {
         <Route exact path="/produits" component={ListeProduits}/>
         <Route exact path="/produit/:id" component={Produit}/>
         <Route path="/panier" component={Panier}/>
+        <Route path="/favories" component={Favories}/>
         <Route path="/login">{utilisateur ? <Redirect to="/"/> : <Login />}</Route>
         <Route path="/register">{utilisateur ? <Redirect to="/" /> : <Register />}</Route>
       </Switch>

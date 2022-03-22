@@ -5,8 +5,7 @@ import Navbar from '../composants/Navbar'
 import Nouveautes from '../composants/Nouveautes'
 import { Add, Remove } from "@material-ui/icons"
 import { useEffect, useState } from "react"
-import { Link, Redirect, useLocation } from "react-router-dom"
-import { ajouterproduitPanier } from "../redux/panierRedux"
+import {  useLocation } from "react-router-dom"
 import { ajouterproduitFavori,supprimerproduitFavori } from "../redux/FavoriteRedux"
 import axios from 'axios'
 import { ajouterProduitPanierAPI} from "../redux/FontionAPI"
@@ -166,10 +165,13 @@ export default function Produit() {
   const F = useDispatch();
   const S = useDispatch();
   const MODClick = () => {
-
+      if(utilisateur!=null){
      (color!=="" && size !=="") ?
          ajouterProduitPanierAPI(P,{produit:{ ...produit, quantite, price:produit.price*quantite, color , size},userId : utilisateur._id,produits})
-         : alert("Veuillez entrez votre taille et la couleur !! ")
+         : alert("Veuillez entrez votre taille et la couleur !! ")  }
+      else {
+          history.push(url);
+      }
   };
   
 
@@ -181,7 +183,7 @@ export default function Produit() {
   console.log(existeProduit)
 
   const R =() =>{
-  if(utilisateur!=null){
+
    if (existeProduit.length === 0){                                                
     F(
       ajouterproduitFavori({ produit}),
@@ -191,9 +193,6 @@ export default function Produit() {
           supprimerproduitFavori( {produit})  
             ); 
        }
-  } else {    
-    history.push(url);
-  }
 }
   return (
     <Container>

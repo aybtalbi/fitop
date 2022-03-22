@@ -42,7 +42,12 @@ exports.getAllProducts = (req, res) => {
   else if (qCategory)
     products = Product.find({ categories: { $in: [qCategory] } });
   else if (qsearch)
-    products = Product.find({ title : {'$regex': qsearch,$options: 'i'}});
+    products = Product.find({ $or: [{ title : {'$regex': qsearch,$options: 'i'}},
+                                         { desc : {'$regex': qsearch,$options: 'i'}},
+                                         { color : {'$regex': qsearch,$options: 'i'}},
+                                         { type : {'$regex': qsearch,$options: 'i'}},
+                                         { categories : {'$regex': qsearch,$options: 'i'}},
+                                         { brand : {'$regex': qsearch,$options: 'i'}}]});
   else products = Product.find();
 
   products

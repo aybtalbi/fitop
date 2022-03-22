@@ -73,6 +73,7 @@ export default function ListeSearchProduits() {
   return (
     <Container>
         <Navbar search={handleChange}/>
+        <MenuNavbar/>
         <Header>                          
         <Retour> <Link to="/"><ArrowBackIos style={ {color: "black"}}/></Link> </Retour>
         </Header>

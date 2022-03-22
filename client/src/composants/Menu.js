@@ -103,9 +103,9 @@ history.push("/produits/enfants");
     <Container>        
             <Menu>
                  <Left onClick={home}>Home</Left>
-                 <Center onClick={femme}>Femme</Center>
-                 <Right onClick={homme} >Homme</Right>
-                 <RightW onClick={enfant}>Enfant</RightW>
+                 <Center onClick={femme}>Femmes</Center>
+                 <Right onClick={homme} >Hommes</Right>
+                 <RightW onClick={enfant}>Enfants</RightW>
             </Menu>
     </Container>)
 }

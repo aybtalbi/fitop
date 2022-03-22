@@ -63,6 +63,7 @@ const Product = styled.div`
 
   &:hover {
     background-color: #ececec;
+    cursor: pointer;
   }
 
   ${mobile({flexDirection: "column"})}

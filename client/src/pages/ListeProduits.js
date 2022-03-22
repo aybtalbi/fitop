@@ -57,7 +57,14 @@ const Select = styled.select`
 `
 const Option = styled.option`
 `
-
+const Input= styled.button`
+ color: black;
+ font-weight: 700;
+ border: none;
+ font-size: 20px;
+ background-color: white;
+ cursor: pointer;
+`
 
 export default function ListeProduits() {
   const Lieu = useLocation();
@@ -86,9 +93,12 @@ export default function ListeProduits() {
                   <Option value="blue">Bleu</Option>
                   <Option value="pink">Rose</Option>
                   <Option value="skyblue">Bleu Ciel</Option>
+                  <Option value="gray">Gris</Option>
+                  <Option value="broown">Marron</Option>
                 </Select>
                <Select name="size" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Taille</Option>
+                  <Option>XXS</Option>
                   <Option>XS</Option>
                   <Option>S</Option>
                   <Option>M</Option>
@@ -99,23 +109,35 @@ export default function ListeProduits() {
                 <Select name="brand" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
                   <Option disabled selected> Marque</Option>
                   <Option>Nike</Option>
-                  <Option>Adidas Originals</Option>
+                  <Option>Adidas</Option>
                   <Option>Converse</Option>
                   <Option>Jordan</Option>
                   <Option>The North Face</Option>
                   <Option>Calvin Klein</Option>
                   <Option>Puma</Option>
-                  <Option>Vans</Option>
+                  <Option>Fila</Option>
                   <Option>Levi's</Option>
+                  <Option>EA7</Option> 
                 </Select>
+                <Select name="type" onChange={(e) => setFiltres({...filtre,[e.target.name]: e.target.value})}> 
+                  <Option disabled selected> catégorie</Option>
+                  <Option>Survêtement</Option>
+                  <Option>Joggers</Option>
+                  <Option>T-Shirt</Option>
+                  <Option>Tracksuit</Option>
+                  <Option>Baskets</Option>
+                  <Option>Sweatshirt</Option>
+                </Select>
+                <Input onClick={(e) => setFiltres({})}> X </Input>
             </Filtre>
+            
             <Filtre>
               <Select onChange={(e) => setSort(e.target.value)}> 
                   <Option value="plusrecent">les plus récents</Option>
                   <Option value="Pris bas à élevé">Pris bas à élevé</Option>
                   <Option value="Pris élevé à bas">Pris élevé à bas</Option>
                </Select>
-            </Filtre>
+           </Filtre>            
         </FiltreContainer>
         <Products categorie={categorie} filtre={filtre} sort={sort}/>
         <Nouveautes/>

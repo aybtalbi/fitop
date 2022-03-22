@@ -33,7 +33,7 @@ export default function NewProduct() {
   console.log(inputs)
   console.log(color)
   console.log(size)
-
+  console.log(cat)
   const handleCat = (e) => {
     setCat(e.target.value.split(","));
   };
@@ -60,15 +60,10 @@ export default function NewProduct() {
     const storageRef = ref(storage, fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);
 
-    // Register three observers:
-    // 1. 'state_changed' observer, called any time the state changes
-    // 2. Error observer, called on failure
-    // 3. Completion observer, called on successful completion
+    
     uploadTask.on(
       "state_changed",
       (snapshot) => {
-        // Observe state change events such as progress, pause, and resume
-        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         console.log("Upload is " + progress + "% done");
@@ -82,12 +77,10 @@ export default function NewProduct() {
           default:
         }
       },
-      (error) => {
-        // Handle unsuccessful uploads
+      (error) => {    
+        
       },
-      () => {
-        // Handle successful uploads on complete
-        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+      () => {        
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat,color : color, size:size,type:type };
           addProduct(product, dispatch);
@@ -115,7 +108,6 @@ export default function NewProduct() {
           <input
             name="title"
             type="text"
-            placeholder="Apple Airpods"
             onChange={handleChange}
           />
         </div>
@@ -124,43 +116,62 @@ export default function NewProduct() {
           <input
             name="desc"
             type="text"
-            placeholder="description..."
             onChange={handleChange}
           />
         </div>
         <div className="addProductItem">
-          <label>Brand</label>
-          <input
-            name="brand"
-            type="text"
-            placeholder="description..."
-            onChange={handleChange}
-          />
+          <label>Marque</label>         
+            <select name="brand" onChange={handleChange}> 
+                  <option disabled selected> Marque</option>
+                  <option>Nike</option>
+                  <option>Adidas</option>
+                  <option>Converse</option>
+                  <option>Jordan</option>
+                  <option>The North Face</option>
+                  <option>Calvin Klein</option>
+                  <option>Puma</option>
+                  <option>Fila</option>
+                  <option>Levi's</option>
+                  <option>EA7</option> 
+          </select>
         </div>
         <div className="addProductItem">
           <label>Price</label>
           <input
             name="price"
             type="number"
-            placeholder="100"
+            placeholder="20"
             onChange={handleChange}
           />
         </div>
         <div className="addProductItem">
           <label>Categories</label>
-          <input type="text" placeholder="homme,femme.." onChange={handleCat} />
+          <select name="Categories" onChange={handleCat}> 
+                  <option disabled selected> Categories</option>
+                  <option>femmes</option>
+                  <option>hommes</option>
+                  <option>enfants</option>
+          </select>
         </div>
         <div className="addProductItem">
           <label>Color</label>
-          <input type="text" placeholder="Red , ..." onChange={handleColor} />
+          <input type="text" placeholder="red,black,white..." onChange={handleColor} />
         </div>
         <div className="addProductItem">
           <label>Size</label>
-          <input type="text" placeholder="XXL, XL" onChange={handleSize} />
+          <input type="text" placeholder="XS,S,M,L.." onChange={handleSize} />
         </div>
         <div className="addProductItem">
           <label>Type</label>
-          <input type="text" placeholder="jeans,skirts" onChange={handleType} />
+            <select name="type" onChange={handleType} > 
+                  <option disabled selected> Type</option>
+                  <option>Survêtement</option>
+                  <option>Joggers</option>
+                  <option>T-Shirt</option>
+                  <option>Tracksuit</option>
+                  <option>Baskets</option>
+                  <option>Sweatshirt</option>
+             </select>
         </div>
         <div className="addProductItem">
           <label>Stock</label>

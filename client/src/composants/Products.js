@@ -53,7 +53,7 @@ export default function Products({ categorie, filtre, sort,search }) {
         {(categorie || search)
         ? produitsFiltrer.map((items) => <ProductsItem items={items} key={items.id} />)
         : produits
-            .slice(0, 8)
+            .slice(6,14)
             .map((items) => <ProductsItem items={items} key={items.id} />)}
     </Container>
   )

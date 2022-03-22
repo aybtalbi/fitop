@@ -13,6 +13,7 @@ const Left = styled.div`
    flex-direction: column;
    padding: 20px;
    padding-left: 60px;
+   margin-right: 200px;
    ${mobile({paddingLeft:"10px"})}
 `
 const Logo = styled.h1`
@@ -21,14 +22,8 @@ const Description = styled.p`
    margin: 20px 0px;  
    text-align: justify;
 `
-const Center = styled.div`
-   flex: 1;
-   padding-top: 20px;
-   padding-left: 80px;
-   ${mobile({ display:"none"})}
-`
 const Title = styled.h3`
-   margin-bottom: 30px;
+   margin-bottom: 50px;
    padding-top: 10px;
 `
 const List = styled.ul`
@@ -56,8 +51,8 @@ const ContactItem = styled.div`
    cursor: pointer;
 `
 const Payment = styled.img`
-   padding-top: 120px;
-   padding-left: 100px;
+   padding-top: 80px;   
+   margin-left: 37%;
    ${mobile({paddingLeft:"10px", paddingTop: "10px"})}
 `
 
@@ -74,20 +69,8 @@ export default function Footer() {
             transparente sur tous les canaux. 
         </Description>        
       </Left>
-      <Center>
-          <Title>Useful Link</Title>
-          <List>
-              <ListItem>Home</ListItem>
-              <ListItem>Cart</ListItem>
-              <ListItem>Man Fashion</ListItem>
-              <ListItem>Women Fashion</ListItem>
-              <ListItem>Accessoiries</ListItem>
-              <ListItem>My Account</ListItem>
-              <ListItem>Wishlist</ListItem>
-          </List>
-      </Center>
       <Right>
-          <Title> Contact </Title>
+          <Title> Contacter nous </Title>
           <ContactItem>
              <MailOutline style={{marginRight: "10px"}}/> contact-us@fitop.fr
           </ContactItem>

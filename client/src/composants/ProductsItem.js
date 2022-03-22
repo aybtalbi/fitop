@@ -68,9 +68,6 @@ export default function ProductsItem({items}) {
        <Image src={items.img}/>
        <Info>
            <Icon>
-               <FavoriteBorderOutlined/>
-           </Icon>
-           <Icon>
            <Link to={`/produit/${items._id}`}>
           <SearchOutlined style={{color: "black"}} />
           </Link>

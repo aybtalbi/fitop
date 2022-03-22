@@ -4,11 +4,11 @@ const panier = createSlice({
   initialState: {
     produits: [],
     quantite: 0,
-    total: 0,
-  },
+    total: 0   
+   },
   reducers: {
     ajouterproduitPanier: (state, action) => {
-      const prod = state.produits.filter(produit => produit._id === action.payload.produit._id);
+    const prod = state.produits.filter(produit => produit._id === action.payload.produit._id);      
       if(prod.length !== 0 ){
           prod[0].price += action.payload.produit.price;
           prod[0].quantite += action.payload.produit.quantite;
@@ -19,6 +19,7 @@ const panier = createSlice({
         state.produits.push(action.payload.produit);
       }
       state.total += action.payload.produit.price ;
+
     },
     supprimerPanier : (state) => {
       state.produits = [];

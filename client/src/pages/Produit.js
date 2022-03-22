@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Announcement from '../composants/Announcement'
 import Footer from '../composants/Footer'
 import Navbar from '../composants/Navbar'
 import Nouveautes from '../composants/Nouveautes'
@@ -10,9 +9,11 @@ import { Link, Redirect, useLocation } from "react-router-dom"
 import { ajouterproduitPanier } from "../redux/panierRedux"
 import { ajouterproduitFavori,supprimerproduitFavori } from "../redux/FavoriteRedux"
 import axios from 'axios'
+import { addPanierPRoduct } from "../redux/FontionAPI"
 import { useDispatch,useSelector } from "react-redux"
 import mobile from '../responsive';
 import { FavoriteBorderOutlined } from '@material-ui/icons'
+import MenuNavbar from '../composants/Menu'
 import { Favorite} from '@material-ui/icons'
 import { useHistory } from 'react-router-dom'
 
@@ -170,6 +171,8 @@ export default function Produit() {
     : alert("Veuillez entrez votre taille et la couleur !! ")
     );
   };
+  
+
   const wishlist = useSelector((state) => state.wishlist);
   let url = "/login";
   let history = useHistory();
@@ -195,7 +198,7 @@ export default function Produit() {
   return (
     <Container>
       <Navbar/>
-      <Announcement/>
+      <MenuNavbar/>
       <Wrapper>
         <ImgContainer>
           <Image src={produit.img} />
@@ -214,6 +217,7 @@ export default function Produit() {
              <Filter>
               <FilterTitle>Taille :</FilterTitle>
               <FilterSize onChange={(e) => setSize(e.target.value)}>
+              <FilterSizeOption disabled selected> Size </FilterSizeOption>
                 {produit.size?.map((s) => (
                   <FilterSizeOption key={s}>{s}</FilterSizeOption>
                 ))}

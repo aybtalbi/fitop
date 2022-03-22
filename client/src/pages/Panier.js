@@ -13,6 +13,7 @@ import mobile from '../responsive';
 import { supprimerProduitPanier } from '../redux/panierRedux';
 import { useHistory } from "react-router";
 import { userRequest } from "../requestMethods";
+import MenuNavbar from '../composants/Menu'
 
 
 const CONST_KEY = "pk_test_51KZfooCdM8sTJrsGumDQtdXReAppgLeZ8OVRUhl8BNpgDS49NghPxvgD1fxpipYV4TFWcujnNFVak4OYv0GGWtp500BTJBvLsJ";

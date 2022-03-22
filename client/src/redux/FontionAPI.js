@@ -2,12 +2,12 @@ import { connexionCommence, connexionReussi, connexionEchoue ,deconnexion, regis
 import { supprimerPanier } from "./panierRedux"
 import { suppFavori } from "./FavoriteRedux"
 import axios from "axios" 
-import { publicRequest } from "../requestMethods";
+import { publicRequest,userRequest } from "../requestMethods";
 
 export const login = async (dispatch, user) => {
   dispatch(connexionCommence());
   try {
-    const res = await axios.post(`http://localhost:8080/api/auth/login`, user);
+    const res = await userRequest.post(`/auth/login`, user);
     dispatch(connexionReussi(res.data));
   } catch (err) {
     dispatch(connexionEchoue());
@@ -24,12 +24,13 @@ export const viderPanier = async (dispatch) => {
     dispatch(supprimerPanier());
  };
 
- export const inscrire = async (dispatch, user) => {
+export const inscrire = async (dispatch, user) => {
   dispatch(registerStart());
-  try {
+  try {  
     const res = await publicRequest.post("/auth/inscrire", user);
     dispatch(registerSuccess(res.data));
   } catch (err) {
     dispatch(registerFailure());
   }
 };
+

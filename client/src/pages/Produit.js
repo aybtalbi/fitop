@@ -9,7 +9,7 @@ import { Link, Redirect, useLocation } from "react-router-dom"
 import { ajouterproduitPanier } from "../redux/panierRedux"
 import { ajouterproduitFavori,supprimerproduitFavori } from "../redux/FavoriteRedux"
 import axios from 'axios'
-import { addPanierPRoduct } from "../redux/FontionAPI"
+import { ajouterProduitPanierAPI} from "../redux/FontionAPI"
 import { useDispatch,useSelector } from "react-redux"
 import mobile from '../responsive';
 import { FavoriteBorderOutlined } from '@material-ui/icons'
@@ -145,7 +145,8 @@ export default function Produit() {
   const [quantite, setQuantite] = useState(1);
   const [color, setColor] = useState("");
   const [size, setSize] = useState("");
-  const [image, setImage] = useState("");
+  const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
+  const produits = useSelector(state => state.panier.produits);
 
   useEffect(() => {
     const getProduit = async () => {
@@ -165,18 +166,17 @@ export default function Produit() {
   const F = useDispatch();
   const S = useDispatch();
   const MODClick = () => {
-    P(
-     (color!="" & size !="") ?
-    ajouterproduitPanier({produit:{ ...produit, quantite, price:produit.price*quantite, color , size}})
-    : alert("Veuillez entrez votre taille et la couleur !! ")
-    );
+
+     (color!=="" && size !=="") ?
+         ajouterProduitPanierAPI(P,{produit:{ ...produit, quantite, price:produit.price*quantite, color , size},userId : utilisateur._id,produits})
+         : alert("Veuillez entrez votre taille et la couleur !! ")
   };
   
 
   const wishlist = useSelector((state) => state.wishlist);
   let url = "/login";
   let history = useHistory();
-  const utilisateur = useSelector((state) => state.utilisateur.utilisateursCourant);
+
   const existeProduit =  wishlist.produits.filter(prod => prod._id === produit._id )
   console.log(existeProduit)
 

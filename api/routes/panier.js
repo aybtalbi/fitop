@@ -4,9 +4,9 @@ const { creerPanier,majPanier,seulPanier} = require("../controllers/panier");
 const router = require("express").Router();
 
 
-router.post("/", verifyToken, creerPanier);
-router.put("/:id", verifyTokenAndAdmin, majPanier);
-router.get("/find/:userId", verifyTokenAndAuthorization, seulPanier);
+router.post("/", creerPanier);
+router.put("/:userId", majPanier);
+router.get("/find/:userId", seulPanier);
 
 
 module.exports = router;

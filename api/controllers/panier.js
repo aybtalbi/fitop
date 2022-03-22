@@ -9,7 +9,7 @@ exports.creerPanier = (req, res) => {
 
 
 exports.majPanier = (req, res) => {
-    Panier.findByIdAndUpdate(req.params.id, {$set: req.body,}, {new: true}
+    Panier.updateOne({userId:req.params.userId}, {$set: req.body,}, {new: true}
     ).then(panier => res.status(200).json(panier)
     ).catch(err => res.status(500).json(err))
 }

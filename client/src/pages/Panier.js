@@ -8,7 +8,7 @@ import { Add, Close, FavoriteRounded, Remove, ShoppingCartRounded } from '@mater
 import { useEffect, useState } from "react";
 import StripeCheckout from "react-stripe-checkout";
 import { Link } from "react-router-dom";
-import { viderPanier } from "../redux/FontionAPI"
+import {suppProduitPanierAPI, viderPanier} from "../redux/FontionAPI"
 import mobile from '../responsive';
 import { supprimerProduitPanier } from '../redux/panierRedux';
 import { useHistory } from "react-router";
@@ -187,14 +187,13 @@ export default function Panier() {
   };
 
 const d = useDispatch();
-  const Click = (e) => {
-    e.preventDefault();
-    viderPanier(d);
+  const Click = () => {
+    viderPanier(d,{userId:utilisateur._id});
   }; 
 
 
   const fermer = (produit) =>{
-    d(supprimerProduitPanier({produit}))
+    suppProduitPanierAPI(d,{userId:utilisateur._id ,produits : panier.produits , produit:produit})
   }
 
 

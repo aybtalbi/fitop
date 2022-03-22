@@ -21,6 +21,11 @@ const panier = createSlice({
       state.total += action.payload.produit.price ;
 
     },
+    ajouterPanier : (state,action) => {
+      state.produits = action.payload.products;
+      state.quantite = action.payload.panierQuantity;
+      state.total= action.payload.Total;
+    },
     supprimerPanier : (state) => {
       state.produits = [];
       state.quantite = 0;
@@ -34,5 +39,5 @@ const panier = createSlice({
   },
 });
 
-export const { ajouterproduitPanier,supprimerPanier,supprimerProduitPanier } = panier.actions;
+export const { ajouterproduitPanier,supprimerPanier,supprimerProduitPanier,ajouterPanier } = panier.actions;
 export default panier.reducer;

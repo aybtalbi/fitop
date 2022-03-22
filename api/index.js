@@ -11,6 +11,8 @@ const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe");
 const newsLetter = require("./routes/newsLetter");
 const cors = require("cors");
+const swaggerUi = require('swagger-ui-express')
+const swaggerFile = require('./swagger_output.json')
 
 
 mongoose
@@ -33,3 +35,6 @@ app.use("/api/newsletter", newsLetter);
 app.listen(process.env.PORT || 8080, () => {
   console.log("Backend server is running!");
 });
+
+app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
+

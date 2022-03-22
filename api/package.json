@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "swagger-autogen": "node swagger.js"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,8 @@
     "nodemailer": "^6.7.2",
     "nodemon": "2.0.12",
     "stripe": "^8.174.0",
-    "swagger-jsdoc": "^6.1.0",
+    "swagger-autogen": "^2.20.5",
+    "swagger-ui": "^4.8.0",
     "swagger-ui-express": "^4.3.0"
   }
 }

@@ -1,13 +1,11 @@
 const Product = require("../models/Product");
 
 exports.createProduct = (req, res) => {
-  const newProduct = new Product(req.body);
-
-  newProduct
-    .save()
-    .then((savedProduct) => res.status(200).json(savedProduct))
-    .catch((err) => res.status(500).json(err));
+  const newProduct = new Product(req.body);  
+  newProduct.save().then((savedProduct) => res.status(200).json(savedProduct))
+  .catch((err) => res.status(500).json(err));
 };
+
 exports.updateProduct = (req, res) => {
   Product.findByIdAndUpdate(
     req.params.id,

@@ -44,7 +44,6 @@ exports.getAllUsers = (req, res) => {
 exports.getUserStats = (req, res) => {
     const date = new Date();
     const lastYear = new Date(date.setFullYear(date.getFullYear() - 1));
-
     User.aggregate([
         {$match: {createdAt: {$gte: lastYear}}},
         {

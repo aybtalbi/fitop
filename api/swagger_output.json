@@ -5,7 +5,7 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "localhost:3000",
+  "host": "localhost:8080",
   "basePath": "/",
   "schemes": [
     "http"
@@ -99,7 +99,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "password": {
+                "name": {
+                  "example": "any"
+                },
+                "lastname": {
                   "example": "any"
                 }
               }
@@ -168,13 +171,6 @@
     "/api/users/": {
       "get": {
         "description": "",
-        "parameters": [
-          {
-            "name": "new",
-            "in": "query",
-            "type": "string"
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -208,7 +204,47 @@
     "/api/products/": {
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "desc": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                },
+                "categories": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "number"
+                },
+                "inStock": {
+                  "example": "yes or no"
+                },
+                "brand": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -224,11 +260,6 @@
       "get": {
         "description": "",
         "parameters": [
-          {
-            "name": "new",
-            "in": "query",
-            "type": "string"
-          },
           {
             "name": "category",
             "in": "query",

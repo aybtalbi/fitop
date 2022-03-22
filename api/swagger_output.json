@@ -351,7 +351,30 @@
     "/api/panier/": {
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters":  [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "products": {
+                  "example": "[]",
+                  "type":"array"
+                },
+                "Total": {
+                  "example": "number"
+                },
+                "panierQuantity": {
+                  "example": "number"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -371,6 +394,52 @@
             "in": "path",
             "required": true,
             "type": "string"
+            
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "products": {
+                  "type":"array",
+                  "items": {
+                      "properties": {
+                        "_id": {
+                          "type":"string"
+                        },
+                        "img": {
+                          "type":"string"
+                        },
+                        "title": {
+                          "type":"string"
+                        },
+                        "quantite": {
+                          "type":"number"
+                        },
+                        "color": {
+                          "type":"string"
+                        },
+                        "size": {
+                          "type":"string"
+                        },
+                        "price": {
+                          "type":"number"
+                        }
+                      }
+                }},
+                "Total": {
+                  "example": "number"
+                },
+                "panierQuantity": {
+                  "example": "number"
+                }
+              }
+            }
           }
         ],
         "responses": {

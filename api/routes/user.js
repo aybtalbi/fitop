@@ -4,7 +4,6 @@ const {updateUser, deleteUser, getUser, getAllUsers, getUserStats} = require("..
 const {getAllOrders} = require("../controllers/order");
 
 const router = require("express").Router();
-
 /*
 router.put("/:id", verifyTokenAndAuthorization, updateUser);
 router.delete("/:id", verifyTokenAndAuthorization, deleteUser);

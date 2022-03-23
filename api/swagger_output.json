@@ -476,9 +476,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
-                  "example": "any"
-                },
                 "products": {
                   "type":"array",
                   "items": {

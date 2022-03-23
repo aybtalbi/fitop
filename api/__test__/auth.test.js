@@ -61,14 +61,14 @@ describe('Authentication', () => {
 })
 describe('Authentication', () => {
     describe('Login with a wrong mail' , () => {
-        it('should return a 500', async() =>{
+        it('should return a 401', async() =>{
         const login = {
             email: "error@gmail.com",
             password: "lamiae1"
         }
         const {body , statusCode} = await supertest(app).post(`/api/auth/login`)
         .send(login);
-        expect(statusCode).toBe(500);
+        expect(statusCode).toBe(401);
         })        
     })
 })

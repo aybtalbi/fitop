@@ -88,6 +88,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -149,6 +154,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
@@ -171,6 +181,12 @@
     "/api/users/": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }],
         "responses": {
           "200": {
             "description": "OK"
@@ -187,7 +203,11 @@
     "/api/users/stats": {
       "get": {
         "description": "",
-        "parameters": [],
+        "parameters": [  {
+          "name": "token",
+          "in": "header",
+          "type": "string"
+        }],
         "responses": {
           "200": {
             "description": "OK"
@@ -205,6 +225,11 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -286,10 +311,54 @@
         "description": "",
         "parameters": [
           {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "desc": {
+                  "example": "any"
+                },
+                "img": {
+                  "example": "any"
+                },
+                "categories": {
+                  "example": "any"
+                },
+                "size": {
+                  "example": "any"
+                },
+                "color": {
+                  "example": "any"
+                },
+                "type": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "number"
+                },
+                "inStock": {
+                  "example": "yes or no"
+                },
+                "brand": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -307,6 +376,11 @@
       "delete": {
         "description": "",
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "path",
@@ -455,14 +529,12 @@
     "/api/panier/find/{userId}": {
       "get": {
         "description": "",
-        "parameters": [
-          {
+        "parameters": [{
             "name": "userId",
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
+          }],
         "responses": {
           "200": {
             "description": "OK"
@@ -481,6 +553,40 @@
             "name": "token",
             "in": "header",
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "products": {
+                  "type":"array",
+                  "items": {
+                    "properties": {
+                      "productId": {
+                        "exemple":"string"
+                      },
+                      "quantity": {
+                        "exemple":"number"
+                      }
+                    }
+                  }
+                },
+                "amount": {
+                  "example": "number"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -500,7 +606,13 @@
       },
       "get": {
         "description": "",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -519,10 +631,49 @@
         "description": "",
         "parameters": [
           {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "example": "any"
+                },
+                "products": {
+                  "type":"array",
+                  "items": {
+                    "properties": {
+                      "productId": {
+                        "exemple":"string"
+                      },
+                      "quantity": {
+                        "exemple":"number"
+                      }
+                    }
+                  }
+                },
+                "amount": {
+                  "example": "number"
+                },
+                "address": {
+                  "example": "any"
+                },
+                "status": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -540,6 +691,11 @@
       "delete": {
         "description": "",
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "id",
             "in": "path",
@@ -565,6 +721,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "userId",
             "in": "path",
             "required": true,
@@ -588,6 +749,11 @@
       "get": {
         "description": "",
         "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "pid",
             "in": "query",
@@ -640,7 +806,18 @@
     "/api/newsletter/signup": {
       "post": {
         "description": "",
-        "parameters": [],
+        "parameters": [   {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "example": "any"
+              }
+            }
+          }
+        }],
         "responses": {
           "200": {
             "description": "OK"

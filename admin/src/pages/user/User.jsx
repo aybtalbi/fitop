@@ -35,6 +35,7 @@ export default function User() {
 
   const handleClick =  (e)  => {
     e.preventDefault();
+    const user2 = {...user , ...inputs};
     updateUsers(user._id, inputs, dispatch);
     history.push("/users")
   };
@@ -82,26 +83,28 @@ export default function User() {
           <span className="userUpdateTitle">Edit</span>
           <form className="userUpdateForm">
             <div className="userUpdateLeft">
+
               <div className="userUpdateItem">
-                <label>Username</label>
+                <label>name*</label>
                 <input
-                  type="text"
-                  placeholder={user.username}
-                  name="username"
-                  onChange={handleChange}
+                    type="text"
+                    placeholder="name"
+                    name="name"
+                    onChange={handleChange}
                 />
               </div>
+
               <div className="userUpdateItem">
-                <label>Email</label>
-                <input
+              <label>lastname*</label>
+              <input
                   type="text"
-                  placeholder={user.email}
-                  name="email"
+                  placeholder="lastname"
+                  name="lastname"
                   onChange={handleChange}
-                />
-              </div>
+              />
+            </div>
               <div className="userUpdateItem">
-                <label>Phone</label>
+                <label>Password*</label>
                 <input
                   type="password"
                   placeholder="password"
@@ -109,6 +112,12 @@ export default function User() {
                   onChange={handleChange}
                 />
               </div>
+              <div className="userUpdateItem">
+                <label>Admin ?*</label>
+              <select name="isAdmin" style={{width:100}}  onChange={handleChange}>
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select></div>
             </div>
             <div className="userUpdateRight">
               <div className="userUpdateUpload">

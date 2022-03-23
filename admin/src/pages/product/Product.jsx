@@ -179,7 +179,7 @@ export default function Product() {
                         <label>Categories</label>
                         <input type="text"  name="price" onChange={handleCat} placeholder={product.categories.toString()} />
                         <label>In Stock</label>
-                        <select name="inStock" id="idStock" onChange={handleChange}>
+                        <select name="inStock" style={{width:100}}   onChange={handleChange}>
                             <option value="true">Yes</option>
                             <option value="false">No</option>
                         </select>

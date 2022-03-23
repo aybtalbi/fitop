@@ -2,6 +2,7 @@ const User = require("../models/User");
 const CryptoJS = require("crypto-js");
 const jwt = require("jsonwebtoken");
 
+
 exports.inscrire = (req, res) => {
   const newUser = new User({
     username: req.body.username,
@@ -9,14 +10,22 @@ exports.inscrire = (req, res) => {
     name: req.body.name,
     lastname: req.body.lastname,
     password: CryptoJS.AES.encrypt(
-      req.body.password,
-      process.env.PASS_SEC
+        req.body.password,
+        process.env.PASS_SEC
     ).toString(),
   });
   newUser.save().then((savedUser) => {
-      res.status(201).json(savedUser);
-    })
-    .catch((err) => res.status(500).json(err));
+    const accessToken = jwt.sign(
+        {
+          id: savedUser._id,
+          isAdmin: savedUser.isAdmin,
+        },
+        process.env.JWT_SEC,
+        { expiresIn: "3d" }
+    );
+    res.status(201).json({...savedUser._doc,accessToken});
+  })
+      .catch((err) => res.status(500).json(err));
 };
 
 exports.connexion = (req, res) => {

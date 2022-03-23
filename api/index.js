@@ -38,3 +38,4 @@ app.listen(process.env.PORT || 8080, () => {
 
 app.use('/doc', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
+module.exports = app;

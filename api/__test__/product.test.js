@@ -39,11 +39,11 @@ describe('product', () => {
         const tokenJWT= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZWU1NjhmYjIwMGRkNTA1ZGE0OCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODA1MTczOCwiZXhwIjoxNjQ4MzEwOTM4fQ.twIsIpH9lX5EX0cU5R8rlVUMAY2wffYcGUkvNWVrSj8'
         const addproduct = {
             title: "NIKE T-shirt For Women ",
-            desc: "any",
-            img: "any",
-            categories: "homme",
+            desc: "Nike Varsity Boyfriend Crew Sweatshirt",
+            img: "https://firebasestorage.googleapis.com/v0/b/fitop-b47ab.appspot.com/o/1648080085114Nike%20Varsity%20Boyfriend%20Crew%20Sweatshirt.png?alt=media&token=3ad03b7b-e330-4b86-9bc9-7ece9222b86c",
+            categories: "femme",
             size: "XL",
-            color: "white",
+            color: "green",
             type: "T-shirt",
             price: 30,
             inStock: "yes",
@@ -61,12 +61,12 @@ describe('product', () => {
         it('should return a 403', async() =>{
         const tokenJWT= 'randomToken'
         const addproduct = {
-            title: "NIKE T-shirt for Women",
-            desc: "any",
-            img: "any",
+            title: "NIKE T-shirt For Women",
+            desc: "Nike Varsity Boyfriend Crew Sweatshirt",
+            img: "https://firebasestorage.googleapis.com/v0/b/fitop-b47ab.appspot.com/o/1648080085114Nike%20Varsity%20Boyfriend%20Crew%20Sweatshirt.png?alt=media&token=3ad03b7b-e330-4b86-9bc9-7ece9222b86c",
             categories: "femme",
             size: "XL",
-            color: "white",
+            color: "green",
             type: "T-shirt",
             price: 30,
             inStock: "yes",
@@ -84,16 +84,16 @@ describe('product', () => {
     describe('update product by admin ' , () => {
         it('should return a 200 and the product', async() =>{
         const tokenJWT= 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMmJhZWU1NjhmYjIwMGRkNTA1ZGE0OCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0ODA1MTczOCwiZXhwIjoxNjQ4MzEwOTM4fQ.twIsIpH9lX5EX0cU5R8rlVUMAY2wffYcGUkvNWVrSj8'
-        const IDproduct= '623b5244add94578cf674a69'
+        const IDproduct= '623b6f935651baf0de3f5a5b'
         const addproduct ={
-            title: "T-shirt",
-            desc: "any",
-            img: "any",
+            title: "NIKE T-shirt For Women",
+            desc: "Nike Varsity Boyfriend Crew Sweatshirt",
+            img: "https://firebasestorage.googleapis.com/v0/b/fitop-b47ab.appspot.com/o/1648080085114Nike%20Varsity%20Boyfriend%20Crew%20Sweatshirt.png?alt=media&token=3ad03b7b-e330-4b86-9bc9-7ece9222b86c",
             categories: "femme",
-            size: "L",
-            color: "white",
-            type: "t-shirt",
-            price: 88,
+            size: "XL",
+            color: "green",
+            type: "T-shirt",
+            price: 30,
             inStock: "yes",
             brand: "Nike"
           }

@@ -34,7 +34,7 @@ describe('Authentication', () => {
 })
 describe('Authentication', () => {
     describe('Login' , () => {
-        it('should return a 201 and user', async() =>{
+        it('should return a 200 and user', async() =>{
         const login = {
             email: "lamiae@gmail.com",
             password: "lamiae"
